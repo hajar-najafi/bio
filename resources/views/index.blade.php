@@ -32,7 +32,7 @@
             <!-- Portfolio Item 1-->
             <div class="col-md-6 col-lg-4">
                 <div>
-                    <a href="{{route('certificate.index')}}"> <img class="img-fluid" src="assets/img/portfolio/submarine.png" alt="..." /></a>
+                    <a href="/certificate"> <img class="img-fluid" src="assets/img/portfolio/submarine.png" alt="..." /></a>
 
                 </div>
             </div>

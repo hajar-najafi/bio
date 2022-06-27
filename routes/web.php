@@ -53,7 +53,12 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/auth/google',[\App\Http\Controllers\Auth\GoogleAuthController::class,'redirect'])->name('auth.google');
 Route::get('/auth/google/callback',[\App\Http\Controllers\Auth\GoogleAuthController::class,'callback']);
 
-Route::resource('certificate',\App\Http\Controllers\CertificateController::class);
-Route::get('/certificate/edit/{certificate}',[\App\Http\Controllers\CertificateController::class,'edit']);
+
+Route::get('/certificate',[\App\Http\Controllers\CertificateController::class,'index']);
+Route::get('/edit/{certificate}',[\App\Http\Controllers\CertificateController::class,'edit']);
 Route::post('/certificate/edit/{certificate}',[\App\Http\Controllers\CertificateController::class,'update']);
 Route::delete('/certificate/destroy/{certificate}',[\App\Http\Controllers\CertificateController::class,'destroy']);
+Route::get('/certificate/form',function (){
+    return view('portfolio.form');
+});
+
