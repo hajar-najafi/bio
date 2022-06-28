@@ -27,7 +27,8 @@ class CertificateController extends Controller
      */
     public function create()
     {
-        //
+        $certificate=Certificate::Create(['name'=>$_POST['name'],'teacher'=>$_POST['teacher'],'date'=>$_POST['date']]);
+        return back();
     }
 
     /**

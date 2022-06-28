@@ -36,7 +36,7 @@
                 <li  class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{route('mailform')}}"><i class="bi bi-envelope"></i> contact</a></li>
             </ul>
             @if(auth()->check())
-                <form method="post" action="{{route('logout')}}">
+                <form method="post" action="{{route('logout')}}"style="padding-top: 15px">
                     @csrf
                     <button class="btn btn-danger">logout</button>
                 </form>

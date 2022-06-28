@@ -61,4 +61,4 @@ Route::delete('/certificate/destroy/{certificate}',[\App\Http\Controllers\Certif
 Route::get('/certificate/form',function (){
     return view('portfolio.form');
 });
-
+Route::post('/certificate/create',[\App\Http\Controllers\CertificateController::class,'create']);
