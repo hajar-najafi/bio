@@ -46,7 +46,7 @@
             <!-- Portfolio Item 3-->
             <div class="col-md-6 col-lg-4">
                 <div>
-                    <a href="{{route('login')}}"> <img class="img-fluid" src="assets/img/portfolio/comments.png" alt="..." /></a>
+                    <a href="{{route('posts.index')}}"> <img class="img-fluid" src="assets/img/portfolio/comments.png" alt="..." /></a>
 
                 </div>
             </div>

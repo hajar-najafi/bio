@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EventController;
 use App\Mail\MailSender;
+use App\Models\Post;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
@@ -19,7 +20,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
 
     return view('index');
-});
+})->middleware('auth');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('myresume', function () {
     return view('index');
@@ -29,15 +31,19 @@ Route::get('myresume', function () {
 
 
 
-
+//my resume pdf
 Route::get('resume', function () {
     return view('nav.mainresume');
 })->name('resume');
 
+
+//about me
 Route::get('about', function () {
     return view('nav.about');
 })->name('about');
 
+
+//contact me/send mail
 Route::get('mailform',[\App\Http\Controllers\MailController::class,'mailform'])->name('mailform');
 
 Route::post('sendmail',function (){
@@ -48,13 +54,14 @@ Route::post('sendmail',function (){
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
+
+//login with google
 Route::get('/auth/google',[\App\Http\Controllers\Auth\GoogleAuthController::class,'redirect'])->name('auth.google');
 Route::get('/auth/google/callback',[\App\Http\Controllers\Auth\GoogleAuthController::class,'callback']);
 
-
+//certificates
 Route::get('/certificate',[\App\Http\Controllers\CertificateController::class,'index']);
 Route::get('/edit/{certificate}',[\App\Http\Controllers\CertificateController::class,'edit']);
 Route::post('/certificate/edit/{certificate}',[\App\Http\Controllers\CertificateController::class,'update']);
@@ -66,7 +73,18 @@ Route::post('/certificate/create',[\App\Http\Controllers\CertificateController::
 
 
 
+//calendar
 Route::get('calendar', [EventController::class, 'index'])->name('calendar.index');
 Route::post('calendar/create-event', [EventController::class, 'create'])->name('calendar.create');
 Route::patch('calendar/edit-event', [EventController::class, 'edit'])->name('calendar.edit');
 Route::delete('calendar/remove-event', [EventController::class, 'destroy'])->name('calendar.destroy');
+
+
+
+
+//
+Route::get('/posts',[\App\Http\Controllers\PostController::class,'index'])->name('posts.index');
+Route::get('/post/create',[\App\Http\Controllers\PostController::class,'create'])->name('posts.create');
+Route::post('/post/create',[\App\Http\Controllers\PostController::class,'store'])->name('posts.store');
+Route::get('/post/view/{id}',[\App\Http\Controllers\PostController::class,'show'])->name('posts.show');
+Route::post('/comment/store',[\App\Http\Controllers\CommentController::class,'store'])->name('comments.store');
