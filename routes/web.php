@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EventController;
 use App\Mail\MailSender;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
@@ -62,3 +63,10 @@ Route::get('/certificate/form',function (){
     return view('portfolio.form');
 });
 Route::post('/certificate/create',[\App\Http\Controllers\CertificateController::class,'create']);
+
+
+
+Route::get('calendar', [EventController::class, 'index'])->name('calendar.index');
+Route::post('calendar/create-event', [EventController::class, 'create'])->name('calendar.create');
+Route::patch('calendar/edit-event', [EventController::class, 'edit'])->name('calendar.edit');
+Route::delete('calendar/remove-event', [EventController::class, 'destroy'])->name('calendar.destroy');

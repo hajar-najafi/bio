@@ -20,7 +20,7 @@
 <section class="page-section portfolio" id="portfolio">
     <div class="container">
         <!-- Portfolio Section Heading-->
-        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Portfolio</h2>
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">MORE DETAILS</h2>
         <!-- Icon Divider-->
         <div class="divider-custom">
             <div class="divider-custom-line"></div>
@@ -39,14 +39,14 @@
             <!-- Portfolio Item 2-->
             <div class="col-md-6 col-lg-4">
                 <div>
-                    <a href="{{route('login')}}"> <img class="img-fluid" src="assets/img/portfolio/submarine.png" alt="..." /></a>
+                    <a href="/calendar"> <img class="img-fluid" src="assets/img/portfolio/calendar.png" alt="..." /></a>
 
                 </div>
             </div>
             <!-- Portfolio Item 3-->
             <div class="col-md-6 col-lg-4">
                 <div>
-                    <a href="{{route('login')}}"> <img class="img-fluid" src="assets/img/portfolio/submarine.png" alt="..." /></a>
+                    <a href="{{route('login')}}"> <img class="img-fluid" src="assets/img/portfolio/comments.png" alt="..." /></a>
 
                 </div>
             </div>
