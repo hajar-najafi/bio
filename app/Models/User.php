@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phonenumber',
+        'twofactortype'
     ];
 
     /**
@@ -44,5 +46,9 @@ class User extends Authenticatable
 
     public static function updateOrCreate(array $array, array $array1)
     {
+    }
+    public function tokens()
+    {
+        return $this->hasMany(Token::class);
     }
 }

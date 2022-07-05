@@ -82,9 +82,20 @@ Route::delete('calendar/remove-event', [EventController::class, 'destroy'])->nam
 
 
 
-//
+//blog post and comment
 Route::get('/posts',[\App\Http\Controllers\PostController::class,'index'])->name('posts.index');
 Route::get('/post/create',[\App\Http\Controllers\PostController::class,'create'])->name('posts.create');
 Route::post('/post/create',[\App\Http\Controllers\PostController::class,'store'])->name('posts.store');
 Route::get('/post/view/{id}',[\App\Http\Controllers\PostController::class,'show'])->name('posts.show');
 Route::post('/comment/store',[\App\Http\Controllers\CommentController::class,'store'])->name('comments.store');
+
+
+//profile
+Route::get('/profile',[\App\Http\Controllers\profile\ProfileController::class,'index']);
+Route::get('/profile/twofactor',[\App\Http\Controllers\profile\ProfileController::class,'managetwofactor']);
+Route::post('/profile/twofactor',[\App\Http\Controllers\profile\ProfileController::class,'postmanagetwofactor']);
+Route::get('/profile/verifytoken',[\App\Http\Controllers\profile\ProfileController::class,'verifytokenform'])->name('verifytoken');
+Route::post('/profile/verifytoken',[\App\Http\Controllers\profile\ProfileController::class,'verifytoken']);
+
+//test
+Route::get('/test',[\App\Http\Controllers\profile\ProfileController::class,'generatecode']);

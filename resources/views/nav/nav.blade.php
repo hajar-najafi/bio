@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
@@ -19,7 +20,6 @@
 </head>
 <body id="page-top">
 
-
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
     <div class="container">
@@ -34,13 +34,27 @@
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{route('resume')}}">My resume</a></li>
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{route('about')}}">About Me</a></li>
                 <li  class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{route('mailform')}}"><i class="bi bi-envelope"></i> contact</a></li>
+                <li style="margin-top: 6px"><div class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            my profile
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/profile">
+                                Profile
+                            </a>
+
+                            @if(auth()->check())
+                                <form method="post" action="{{route('logout')}}"style="margin-left: 10px">
+                                    @csrf
+                                    <button class="btn btn-danger" >logout</button>
+                                </form>
+                            @endif
+
+                        </div>
+                    </div></li>
             </ul>
-            @if(auth()->check())
-                <form method="post" action="{{route('logout')}}"style="padding-top: 15px">
-                    @csrf
-                    <button class="btn btn-danger">logout</button>
-                </form>
-            @endif
+
         </div>
     </div>
 </nav>
