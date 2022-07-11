@@ -23,19 +23,25 @@ class ProfileController extends Controller
 
     public function postmanagetwofactor(Request $request)
     {
+        $data=$request->validate([
+            'type'=>'required',
+            'phone'=>'required_unless:type,off',
+            ]);
 
 
         if ($request['type'] === "off") {
             auth()->user()->update(['twofactortype' => 'off']);
             return redirect('/myresume');
-        }
+        }elseif ($request['phone']){
 
-        auth()->user()->update(['twofactortype' => 'sms']);
         //Todo send sms
         //generatecode & save code to data base
-        Token::generatecode();
+        Token::generatecode($request->user());
         $request->session()->flash('phone',$request['phone']);
         return redirect(route('verifytoken'));
+        }else{
+            return redirect('/profile/twofactor');
+        }
 
 
     }
@@ -48,11 +54,19 @@ class ProfileController extends Controller
 
     public function verifytoken(Request $request)
     {
-        dd( $request->session()->get('phone'));
 
         $token=$request->user()->tokens->where('token',$request['token'])->where('expire','>',now())->first();
+        if ($token){
+            $request->user()->update(['twofactortype'=>'sms','phonenumber'=>$request->session()->get('phone')]);
+            $request->user()->tokens()->delete();
+            return redirect('/profile')->with('alert', 'Updated');
+        }else{
+            return redirect('/profile/verifytoken');
+
+        }
 
     }
+
 
 
 }

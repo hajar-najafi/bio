@@ -97,5 +97,8 @@ Route::post('/profile/twofactor',[\App\Http\Controllers\profile\ProfileControlle
 Route::get('/profile/verifytoken',[\App\Http\Controllers\profile\ProfileController::class,'verifytokenform'])->name('verifytoken');
 Route::post('/profile/verifytoken',[\App\Http\Controllers\profile\ProfileController::class,'verifytoken']);
 
-//test
-Route::get('/test',[\App\Http\Controllers\profile\ProfileController::class,'generatecode']);
+//two factor auth after login
+Route::get('/tokenform',[\App\Http\Controllers\Auth\TwofactorauthController::class,'tokenform']);
+Route::post('/tokenform',[\App\Http\Controllers\Auth\TwofactorauthController::class,'posttokenform']);
+
+Route::get('/test',[\App\Http\Controllers\Auth\TwofactorauthController::class,'test']);

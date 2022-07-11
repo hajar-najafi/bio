@@ -21,25 +21,25 @@ class Token extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function scopeGeneratecode($query)
+    public function scopeGeneratecode($query,$user)
     {
-        $result = $this->checkcode();
+        $result = $this->checkcode($user);
         if ($result){
             return $result;
         }else{
             $code = mt_rand(100000, 999999);
 
             //save code to db
-            auth()->user()->tokens()->create(['token'=>$code,'expire'=>now()->addMinute(10)]);
+            $user->tokens()->create(['token'=>$code,'expire'=>now()->addMinute(10)]);
 
         }
 
     }
 
-    public function checkcode()
+    public function checkcode($user)
     {
 
-        if($result = auth()->user()->tokens->where('expire', '>', now())->first()){
+        if($result = $user->tokens->where('expire', '>', now())->first()){
             return $result->token;
         }else{
             return false;

@@ -24,7 +24,10 @@
                         </div>
                         <div class="row mb-4">
                             <label for="phone">Enter your phone number</label>
-                            <input type="text" name="phone" >
+                            <input type="text" name="phone"@error('phone') is_invalid @enderror value="{{old('phone')??auth()->user()->phonenumber}}">
+                            @error('phone')
+                            <span style="color: red">{{$message}}</span>
+                            @enderror
                         </div>
 
                         <div class="row mb-0">

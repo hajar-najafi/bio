@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Token;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Http\Request;
+
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -36,5 +40,22 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    protected function authenticated(Request $request,$user)
+    {
+     if (auth()->user()->twofactortype==='sms') {
+
+         $request->session()->flash('user_id',auth()->user()->id);
+         auth()->logout();
+         $user=User::find($request->session()->get('user_id'));
+         Token::Generatecode($user);
+         //send sms
+         return redirect('tokenform');
+
+
+     }  else return redirect('/myresume');
+
+
     }
 }
