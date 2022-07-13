@@ -1,5 +1,4 @@
 @extends('nav.nav')
-<a href="/certificate/form" class="btn btn-light" style="margin-top: 150px;margin-left: 30px;background-color: #0b5ed7">Add Certificate</a>
 <div style="margin-top: 80px;margin-left: 30px;margin-right: 30px">
 
 <table class="table table-bordered">
@@ -18,12 +17,6 @@
             <td>{{$certificate->name}}</td>
             <td>{{$certificate->teacher}}</td>
             <td>{{$certificate->date}}</td>
-            <td><form method="POST" action="/certificate/destroy/{{$certificate->id}}">
-                    @csrf
-                    <input name="_method" type="hidden" value="DELETE">
-                    <button type="submit" class="btn btn-xs btn-danger btn-flat show-alert-delete-box btn-sm" data-toggle="tooltip" title='Delete'>Delete</button>
-                </form></td>
-            <td> <form action="/edit/{{$certificate->id}}" method="get">@csrf<button class="btn btn-success">Edit</button></form></td>
 
         </tr>
     @endforeach

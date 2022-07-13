@@ -43,6 +43,9 @@
                             <a class="dropdown-item" href="/profile">
                                 Profile
                             </a>
+                            <a class="dropdown-item" href="/admin/user">
+                                Admin Panel
+                            </a>
 
                             @if(auth()->check())
                                 <form method="post" action="{{route('logout')}}"style="margin-left: 10px">
