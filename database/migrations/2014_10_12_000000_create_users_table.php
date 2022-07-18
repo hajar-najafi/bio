@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->boolean('is_admin')->default(0);
+            $table->boolean('is_staff')->default(0);
             $table->string('twofactortype')->default('off');
             $table->string('phonenumber')->nullable();
             $table->string('name');

@@ -1,5 +1,5 @@
 @extends('nav.nav')
-<div style="margin-top: 80px;margin-left: 30px;margin-right: 30px">
+<div style="margin-top: 150px;margin-left: 30px;margin-right: 30px">
 
 <table class="table table-bordered">
     <thead>

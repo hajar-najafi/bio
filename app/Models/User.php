@@ -52,4 +52,28 @@ class User extends Authenticatable
     {
         return $this->hasMany(Token::class);
     }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+    public function permissions()
+    {
+        return $this->belongsToMany(Permission::class);
+    }
+
+    public function userHasPermission($permission)
+    {
+        $permissions=$this->permissions;
+        $result=$permissions->contains('name',$permission->name);
+        $roles=$this->roles;
+        $result2=$roles->intersect($permission->roles)->all();
+        if ($result || $result2){
+            return true;
+        }
+
+
+    }
+
+
 }

@@ -3,6 +3,8 @@
 use App\Http\Controllers\EventController;
 use App\Mail\MailSender;
 use App\Models\Post;
+use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
@@ -18,8 +20,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+if (Gate::allows('delete_user')){
+    return 'yes';
+}
+return "no";
 
-    return view('index');
 })->middleware('auth');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
